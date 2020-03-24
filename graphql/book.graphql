@@ -1,0 +1,43 @@
+type Book  {
+    id: ID!
+    title: String!
+    author: String!
+    image: String
+    description: String
+    featured: Boolean
+    category: Category! @belongsTo
+}
+
+extend type Query {
+    books: [Book] @all
+    book (id: ID! @eq): Book @find
+    booksByFeatured(featured: Boolean! @eq): [Book] @all
+    booksByAuthor(author: String!): [Book]
+}
+
+extend type Mutation {
+    createBook(
+        title: String! @rules(apply: ["required", "min:4"])
+        author: String! @rules(apply: ["required", "min:8"])
+        image: String
+        description: String
+        featured: Boolean
+        link: String
+        category: Int!
+    ): Book! @create
+
+    updateBook(
+        id: ID! @rules(apply: ["required"])
+        title: String! @rules(apply: ["required"])
+        author: String! @rules(apply: ["required"])
+        image: String
+        description: String
+        featured: Boolean
+        link: String
+        category: Int!
+    ): Book @update
+
+    deleteBook(
+        id: ID! @rules(apply: ["required"])
+    ): Book @delete
+}

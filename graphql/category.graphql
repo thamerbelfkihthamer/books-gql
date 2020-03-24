@@ -1,0 +1,22 @@
+type Category {
+    id: ID!
+    name: String!
+    books: [Book] @hasMany
+}
+
+extend type Query {
+    categories: [Category] @all
+    category(id: ID! @eq): Category @find
+}
+
+extend type Mutation {
+    createCategory(
+        name: String  @rules(apply: ["required", "min:4", "unique:categories,name"])
+    ): Category! @create
+    updateCategory(
+        id: ID!, name: String @rules(apply: ["min:4"])
+    ): Category @update
+    deleteCategory(
+        id: ID! @rules(apply: ["required"])
+    ): Category @delete
+}
