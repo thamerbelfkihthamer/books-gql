@@ -8,6 +8,22 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vue from 'vue'
+import VueApollo from 'vue-apollo'
+import ApolloClient from 'apollo-boost'
+
+const apolloClient = new ApolloClient({
+    // You should use an absolute URL here
+    uri: 'http://localhost/BooksQl-laravel/public/index.php/graphql'
+})
+
+
+Vue.use(VueApollo)
+
+const apolloProvider = new VueApollo({
+    defaultClient: apolloClient,
+})
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -20,6 +36,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('home', require('./components/home').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,4 +46,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    apolloProvider,
 });
