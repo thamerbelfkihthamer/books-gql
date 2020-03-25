@@ -7,9 +7,11 @@
 
             <div v-else-if="error" class="error apollo">An error occurred</div>
             <ul v-else-if="data" class="list-group list-group-flush">
-                <li v-for="category of data.categories" class="list-group-item" :key="category.id">
+                <a href="#" class="list-group-item" @click.prevent="$emit('category-id-changed', 'all')">All</a>
+                <a href="#" class="list-group-item" @click.prevent="$emit('category-id-changed', 'featured')">Featured</a>
+                <a href="#" v-for="category of data.categories" class="list-group-item" :key="category.id" @click.prevent="$emit('category-id-changed', category.id)">
                     {{ category.name }}
-                </li>
+                </a>
             </ul>
             <div v-else class="no-result apollo">No result :(</div>
     </template>
