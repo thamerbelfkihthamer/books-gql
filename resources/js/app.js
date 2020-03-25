@@ -9,20 +9,9 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vue from 'vue'
-import VueApollo from 'vue-apollo'
-import ApolloClient from 'apollo-boost'
 
-const apolloClient = new ApolloClient({
-    // You should use an absolute URL here
-    uri: 'http://localhost/BooksQl-laravel/public/index.php/graphql'
-})
-
-
-Vue.use(VueApollo)
-
-const apolloProvider = new VueApollo({
-    defaultClient: apolloClient,
-})
+import apolloProvider from './graphql/index'
+import router from './router/index'
 
 /**
  * The following block of code may be used to automatically register your
@@ -47,4 +36,5 @@ Vue.component('home', require('./components/home').default);
 const app = new Vue({
     el: '#app',
     apolloProvider,
+    router,
 });

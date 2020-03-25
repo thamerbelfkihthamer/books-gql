@@ -1,5 +1,12 @@
 const mix = require('laravel-mix');
 
+
+/**
+ * Import laravel-mix-graphql
+ */
+require("@pp-spaces/laravel-mix-graphql");
+
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -12,4 +19,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+   .sass('resources/sass/app.scss', 'public/css')
+   .graphql();;

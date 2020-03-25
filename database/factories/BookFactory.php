@@ -10,7 +10,7 @@ $factory->define(Book::class, function (Faker $faker) {
         'title' => $faker->title,
         'author' => $faker->userName,
         'description' => $faker->text,
-        'image' => $faker->image('public/storage/images',640,480, null, false),
+        //'image' => $faker->image('public/storage/images',640,480, null, false),
         'category_id' => factory(\App\Category::class)->create()
     ];
 });

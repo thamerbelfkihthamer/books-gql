@@ -10,6 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "@pp-spaces/laravel-mix-graphql": "^0.0.2",
         "axios": "^0.19",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
@@ -26,6 +27,7 @@
     "dependencies": {
         "apollo-boost": "^0.4.7",
         "graphql": "^14.6.0",
-        "vue-apollo": "^3.0.3"
+        "vue-apollo": "^3.0.3",
+        "vue-router": "^3.1.6"
     }
 }

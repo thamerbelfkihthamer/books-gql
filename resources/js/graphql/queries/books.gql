@@ -1,0 +1,12 @@
+query{
+  books{
+    id
+    title
+    author
+    description
+    featured
+    category{
+      name
+    }
+  }
+}
