@@ -1,12 +1,5 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <router-link to="/about">About</router-link>
-                <router-link to="/home">Home</router-link>
-                <router-view></router-view>
-            </div>
-        </div>
         <br>
         <br>
         <div class="row">
@@ -40,7 +33,7 @@
         name: "home",
         components: {
             Categories, 
-            Books
+            Books,
         },
         data(){
             return {

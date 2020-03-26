@@ -4,6 +4,9 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter)
 
 import About from '../components/about'
+import Home from '../components/home'
+import Book from '../components/book'
+import NotFound from '../components/notFound'
 
 // 2. Define  routes
 // Each route should map to a component. The "component" can
@@ -11,8 +14,24 @@ import About from '../components/about'
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-  { path: '/home', component: About },
-  { path: '/about', component: About }
+	{ 
+  		path: '/home',
+  		component: Home,
+ 	},
+  	{	 
+  		path: '/about',
+   		component: About
+   },
+   {
+   		path: '/books/:id',
+  		component: Book,
+  		props: true
+   },
+   {
+   	path: '*',
+   	component: NotFound,
+   }
+
 ]
 
 
@@ -20,7 +39,8 @@ const routes = [
 // You can pass in additional options here, but let's
 // keep it simple for now.
 const router = new VueRouter({
-  routes // short for `routes: routes`
+	//mode: 'history', // this give us a problem so we should fix it with this : https://router.vuejs.org/guide/essentials/history-mode.html#example-server-configurations
+  	routes // short for `routes: routes`
 })
 
 export default router
