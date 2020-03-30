@@ -14,9 +14,10 @@ class ManageCategoriesTest extends TestCase
     /** @test */
     public function a_user_can_view_categories()
     {
+        $this->withoutExceptionHandling();
         $category = factory(Category::class)->create();
 
-        $this->graphQL(
+        $response = $this->graphQL(
         /** @lang GraphQl */
             '
         {

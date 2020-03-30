@@ -7,6 +7,7 @@ import About from '../components/about'
 import Home from '../components/home'
 import Book from '../components/book'
 import NotFound from '../components/notFound'
+import addBook from '../components/addBook'
 
 // 2. Define  routes
 // Each route should map to a component. The "component" can
@@ -21,16 +22,20 @@ const routes = [
   	{	 
   		path: '/about',
    		component: About
-   },
-   {
+   	},
+   	{
    		path: '/books/:id',
   		component: Book,
   		props: true
-   },
-   {
-   	path: '*',
-   	component: NotFound,
-   }
+   	},
+    {
+   		path: '/book/add',
+  		component: addBook,
+   	},
+   	{
+   		path: '*',
+   		component: NotFound,
+   	}
 
 ]
 

@@ -11,7 +11,12 @@
             </div>
              <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Books</div>
+                    <div class="card-header">
+                        Books
+                        <div class="text-center">
+                            <router-link to="/book/add"> Create New Book</router-link>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <books  :category="selectedCategory" :query="query"></books>
                     </div>

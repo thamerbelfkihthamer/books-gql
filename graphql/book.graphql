@@ -15,16 +15,23 @@ extend type Query {
     booksByAuthor(author: String!): [Book]
 }
 
-extend type Mutation {
-    createBook(
+input createBookInput{
         title: String! @rules(apply: ["required", "min:4"])
         author: String! @rules(apply: ["required", "min:8"])
         image: String
         description: String
         featured: Boolean
         link: String
-        category: Int!
-    ): Book! @create
+        category: ConnectCategoryInput
+}
+
+input ConnectCategoryInput {
+        connect: Int!
+}
+
+extend type Mutation {
+
+    createBook(input: createBookInput! @spread): Book! @create
 
     updateBook(
         id: ID! @rules(apply: ["required"])
@@ -34,7 +41,7 @@ extend type Mutation {
         description: String
         featured: Boolean
         link: String
-        category: Int!
+        category: Int
     ): Book @update
 
     deleteBook(
