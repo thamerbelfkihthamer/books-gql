@@ -66,55 +66,62 @@
 
 </template>
 
+
+
+
 <script>
-import addBookQuery from '../graphql/mutations/addBook.gql'
+    import addBookQuery from '../graphql/mutations/addBook.gql'
 
-export default	{
-	data() {
-		return {
-			book: {
-				title: "",
-				author: "",
-				image: "",
-				description: "",
-				link: "",
-				featured: false,
-				category: 0
-			}
-		}
-	},
+    export default	{
+        data() {
+            return {
+                book: {
+                    title: "",
+                    author: "",
+                    image: "",
+                    description: "",
+                    link: "",
+                    featured: false,
+                    category: 0
+                }
+            }
+        },
 
-	methods: {
+        methods: {
 
-		add(){
-		    this.$apollo.mutate({
+            add(){
+            this.$apollo.mutate({
+                mutation: addBookQuery,
+                variables: {
+                    title: this.book.title,
+                    author: this.book.author,
+                    image: this.book.image,
+                    description: this.book.description,
+                    link: this.book.link,
+                    featured: this.book.featured,
+                    category: this.book.category
+                }
 
-		      	mutation: addBookQuery,
-		      	
-		      	variables: {
-			        title: this.book.title,
-			        author: this.book.author,
-			        image: this.book.image,
-			        description: this.book.description,
-			        link: this.book.link,
-			        featured: this.book.featured,
-			        category: this.book.category
-			    }
+            }).then((data) => {
+                this.book.title= "",
+                this.book.author= "",
+                this.book.description= "",
+                this.book.image= "",
+                this.book.link= "",
+                this.book.featured= false,
+                this.book.category= 0
+            }).catch((error) => {
+                let { graphQLErrors } = error;
 
-		  	}).then((data) => {
-		      console.log(data)
-		    }).catch((error) => {
-		    	let { graphQLErrors } = error;
+                console.log(graphQLErrors)
 
-		    	console.log(graphQLErrors)
+                if (graphQLErrors[0].extensions.category === "validation") {
+                    validationErrors = graphQLErrors[0].extensions.validation;
 
-		    	  if (graphQLErrors[0].extensions.category === "validation") {
-		            validationErrors = graphQLErrors[0].extensions.validation;
-
-		            console.log(validationErrors);
-		          }
-		    })
-		} 
-	}
-}
+                    console.log(validationErrors);
+                }
+            })
+        }
+        }
+    }
 </script>

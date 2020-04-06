@@ -15,28 +15,32 @@ import addBook from '../components/addBook'
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-	{ 
-  		path: '/home',
-  		component: Home,
+	{
+        path: '/home',
+        name: 'home',
+        component: Home,
  	},
-  	{	 
-  		path: '/about',
-   		component: About
+  	{
+        path: '/about',
+        name: 'about',
+        component: About
    	},
    	{
-   		path: '/books/:id',
-  		component: Book,
-  		props: true
+        path: '/books/:id',
+        name: 'book',
+        component: Book,
+        props: true
    	},
     {
-   		path: '/book/add',
-  		component: addBook,
+        path: '/book/add',
+        name: 'create_book',
+        component: addBook,
    	},
    	{
-   		path: '*',
-   		component: NotFound,
+        path: '*',
+        name: 'not_found',
+        component: NotFound,
    	}
-
 ]
 
 

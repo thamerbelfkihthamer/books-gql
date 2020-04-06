@@ -58,4 +58,58 @@ class ManageBooksTests extends TestCase
             ]
         ]);
     }
+
+    /** @test */
+    public function validate_book_attribute()
+    {
+
+    }
+    
+
+    /** @test */
+    public function a_user_can_update_a_book()
+    {
+
+    }
+
+    /** @test */
+    public function a_user_cannot_update_a_book_does_not_exit()
+    {
+
+    }
+
+
+    /** @test */
+    public function a_user_can_delete_a_book()
+    {
+        $book = factory(Book::class)->create();
+
+        $response = $this->graphQL(/** @lang GraphQL */ '
+            mutation deleteBook($id: ID!) {
+                deleteBook(id: $id) {
+                    id
+                }
+            }
+        ', [
+            'id' => $book->id
+        ]);
+
+        $response->assertJson([
+            'data' => [
+                'deleteBook' => [
+                    'id' => $book->id
+                ]
+            ]
+        ]);
+
+        $this->assertDatabaseMissing('books',
+            ['title' => $book->title, 'id' => $book->id]
+        );
+    }
+
+    /** @test */
+    public function a_user_cannot_delete_book_does_not_exist()
+    {
+
+    }
 }
