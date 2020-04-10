@@ -50,6 +50,9 @@ class ManageBooksTests extends TestCase
             'category' => $book->category->id
         ]);
 
+
+        dd($response);
+
         $response->assertJson([
             'data' => [
                 'createBook' => [
@@ -64,7 +67,7 @@ class ManageBooksTests extends TestCase
     {
 
     }
-    
+
 
     /** @test */
     public function a_user_can_update_a_book()

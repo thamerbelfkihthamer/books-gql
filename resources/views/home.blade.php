@@ -1,5 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.hostme')
 
 @section('content')
-    <app></app>
+
 @endsection
